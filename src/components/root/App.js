@@ -1,9 +1,17 @@
-
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { Container } from "reactstrap";
+import Navi from "../Navi/Navi";
 
 function App() {
-  return <div>
-    <h1>Hello World</h1>
-  </div>;
+  return (
+    
+    <Container>
+    <Navi></Navi>
+    <Switch>
+    </Switch>
+  </Container>
+  )
 }
 
 export default App;
