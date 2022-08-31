@@ -1,14 +1,10 @@
-import React, { useState, render } from "react";
-
+import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { connect } from "react-redux";
+import { Container, Col, Row, Table } from "reactstrap";
 
-import { Container, Col, Row, Table, Button } from "reactstrap";
-import { Link } from "react-router-dom";
-
-function MenuOffcanvas() {
+function MenuOffcanvas({ categories }) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -39,9 +35,18 @@ function MenuOffcanvas() {
         <Offcanvas.Body>
           <Table borderless hover responsive>
             <tbody>
-              <tr>
-                <td>test</td>
-              </tr>
+              {categories.map((category) => (
+                <tr key={category.id}>
+                  <td>
+                    <img
+                      src={category.img}
+                      style={{ height: 60, width: 60 }}
+                      alt={category.name}
+                    />
+                    <span className="menu-item-text"> {category.name} </span>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Offcanvas.Body>
@@ -50,4 +55,10 @@ function MenuOffcanvas() {
   );
 }
 
-export default connect()(MenuOffcanvas);
+function mapStateToProps(state) {
+  return {
+    categories: state.categoryReducer,
+  };
+}
+
+export default connect(mapStateToProps)(MenuOffcanvas);
