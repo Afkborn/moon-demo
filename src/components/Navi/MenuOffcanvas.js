@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { connect } from "react-redux";
 import { Container, Col, Row, Table } from "reactstrap";
-
+import { useHistory } from "react-router-dom";
 function MenuOffcanvas({ categories }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const history = useHistory();
+  const handleClick = (seoUrl) => history.push(`/${seoUrl}`);
 
   return (
     <>
@@ -36,7 +39,11 @@ function MenuOffcanvas({ categories }) {
           <Table borderless hover responsive>
             <tbody>
               {categories.map((category) => (
-                <tr key={category.id}>
+                <tr
+                  key={category.id}
+                  onClick={() => handleClick(category.seoUrl)}
+                  className="menu-item"
+                >
                   <td>
                     <img
                       src={category.img}

@@ -6,9 +6,7 @@
 .link-black{
     color: rgb(0, 0, 0);
     text-decoration: none;
-    /* bold  */
     font-weight: 600;
-    
     cursor: pointer;
 }
 
@@ -35,6 +33,9 @@
     transform: rotate(270deg);
 }
 
+.menu-item{
+    cursor: pointer;
+}
 
 .menu-item-text{
     font-size: 1.5em;
