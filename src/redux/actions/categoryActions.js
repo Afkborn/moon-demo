@@ -9,9 +9,9 @@ export function getCategoriesSuccess(categories){
 }
 
 export function getCategories() {
+  let endpoint = "/categories/";
   return function (dispatch) {
-    let url = actionTypes.API_URL +  "categories";
-    return fetch(url)
+    return fetch(endpoint)
       .then((response) => response.json())
       .then((result) => dispatch(getCategoriesSuccess(result)));
   };
