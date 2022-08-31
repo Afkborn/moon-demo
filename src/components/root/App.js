@@ -4,8 +4,8 @@ import { Container } from "reactstrap";
 import Navi from "../Navi/Navi";
 import Dashboard from "./Dashboard";
 import Basket from "../Basket/Basket";
-
 import Account from "../Account/Account";
+import NotFound from "../common/NotFound";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/" exact component={Dashboard} />
         <Route path="/basket"  component={Basket} />
         <Route path="/account" component={Account} />
+        <Route component={NotFound}></Route>
       </Switch>
     </Container>
   );
