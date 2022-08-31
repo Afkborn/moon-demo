@@ -3,11 +3,13 @@ import { Nav, Container, Row, Col } from "reactstrap";
 import { Component } from "react";
 import { connect } from "react-redux";
 
-import MenuButton from "../Menu/MenuButton";
 import "../../styles/App.css";
-import Account from "../common/Account";
-import Basket from "../common/Basket";
-import Brand from "../common/Brand";
+import AccountButton from "./AccountButton";
+import BasketButton from "./BasketButton";
+import Brand from "./Brand";
+
+import MenuOffcanvas from "./MenuOffcanvas";
+
 class Navi extends Component {
   render() {
     return (
@@ -15,7 +17,7 @@ class Navi extends Component {
         <Row>
           <Col xs="3">
             <Nav className="me-auto">
-              <MenuButton></MenuButton>
+              <MenuOffcanvas></MenuOffcanvas>
             </Nav>
           </Col>
           <Col xs="6" className="text-center ">
@@ -25,10 +27,10 @@ class Navi extends Component {
             <Row>
               <Col md="6" sm="2" lg="8"></Col>
               <Col xs="5" sm="4" md="3" lg="2">
-                <Account></Account>
+                <AccountButton></AccountButton>
               </Col>
               <Col xs="5" sm="4" md="3" lg="2">
-                <Basket></Basket>
+                <BasketButton></BasketButton>
               </Col>
             </Row>
           </Col>
@@ -39,7 +41,8 @@ class Navi extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+  };
 }
 
 export default connect(mapStateToProps)(Navi);

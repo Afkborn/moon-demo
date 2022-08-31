@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-export default class Basket extends Component {
+export default class BasketButton extends Component {
   render() {
     return (
       <div>
@@ -8,7 +8,7 @@ export default class Basket extends Component {
           <img
             src="basket.svg"
             style={{ height: 40, width: 30 }}
-            alt="website logo"
+            alt="Basket"
             className="link-black"
 
             //   h53 w36
