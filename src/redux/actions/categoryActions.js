@@ -15,7 +15,7 @@ export function getCategoriesSuccess(categories){
 }
 
 export function getCategories() {
-  let endpoint = "/categories/";
+  let endpoint = "https://moon-backend.afkborn.keenetic.pro/categories/";
   return function (dispatch) {
     return fetch(endpoint)
       .then((response) => response.json())
