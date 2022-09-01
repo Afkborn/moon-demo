@@ -1,4 +1,4 @@
-const initialState = {
-    categories: [],
+export default {
+  currentCategory: {},
+  categories: [],
 }
-export default  initialState;

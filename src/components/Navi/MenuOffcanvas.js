@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { connect } from "react-redux";
 import { Container, Col, Row, Table } from "reactstrap";
-import { useHistory } from "react-router-dom";
-function MenuOffcanvas({ categories }) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+import * as categoryActions from "../../redux/actions/categoryActions";
+import { bindActionCreators } from "redux";
 
-  const history = useHistory();
-  const handleClick = (seoUrl) => history.push(`/${seoUrl}`);
 
-  return (
+class  MenuOffcanvas extends Component {
+  state = {
+    show: false,
+  };
+
+  componentDidMount() {
+    this.props.actions.getCategories();
+  }
+
+
+  handleShow = () => {
+    this.setState({ show: true });
+  };
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  selectCategory = (category) => {
+    this.props.actions.changeCategory(category);
+  }
+
+  render() {
+
+    return (
     <>
-      <div onClick={handleShow} className="link-black">
+      <div onClick={this.handleShow} className="link-black">
         <Container>
           <Col>
             <Row xs="5">
@@ -29,7 +47,7 @@ function MenuOffcanvas({ categories }) {
         </Container>
       </div>
 
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas show={this.state.show} onHide={this.handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             <h2>Ürünler</h2>
@@ -38,11 +56,11 @@ function MenuOffcanvas({ categories }) {
         <Offcanvas.Body>
           <Table borderless hover responsive>
             <tbody>
-              {categories.map((category) => (
+              {this.props.categories.map((category) => (
                 <tr
                   key={category.id}
-                  onClick={() => handleClick(category.seoUrl)}
                   className="menu-item"
+                  onClick={() => this.selectCategory(category)}
                 >
                   <td>
                     <img
@@ -60,12 +78,30 @@ function MenuOffcanvas({ categories }) {
       </Offcanvas>
     </>
   );
+  }
 }
 
 function mapStateToProps(state) {
   return {
+    currentCategory: state.changeCategoryReducer,
     categories: state.categoryReducer,
   };
 }
 
-export default connect(mapStateToProps)(MenuOffcanvas);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      getCategories: bindActionCreators(
+        categoryActions.getCategories,
+        dispatch
+      ),
+      changeCategory: bindActionCreators(
+        categoryActions.changeCategory,
+        dispatch
+      ),
+    },
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuOffcanvas);

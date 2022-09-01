@@ -10,13 +10,8 @@ import Brand from "./Brand";
 
 import MenuOffcanvas from "./MenuOffcanvas";
 
-import * as categoryActions from "../../redux/actions/categoryActions";
-import { bindActionCreators } from "redux";
 
 class Navi extends Component {
-  componentDidMount() {
-    this.props.actions.getCategories();
-  }
 
   render() {
     return (
@@ -47,22 +42,5 @@ class Navi extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categoryReducer,
-  };
-}
 
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      getCategories: bindActionCreators(
-        categoryActions.getCategories,
-        dispatch
-      ),
-    },
-  };
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Navi);
+export default connect()(Navi);

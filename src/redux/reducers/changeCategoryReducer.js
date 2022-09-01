@@ -1,12 +1,12 @@
 import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function categoryReducer(
-  state = initialState.categories,
+export default function changeCategoryReducer(
+  state = initialState.currentCategory,
   action
 ) {
   switch (action.type) {
-    case actionTypes.GET_CATEGORIES_SUCCESS:
+    case actionTypes.CHANGE_CATEGORY:
       return action.payload;
     default:
       return state;
