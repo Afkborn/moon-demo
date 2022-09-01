@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { connect } from "react-redux";
 import { Container, Col, Row, Table } from "reactstrap";
