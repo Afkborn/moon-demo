@@ -10,7 +10,7 @@ export function getProductsSuccess(products) {
 
 export function getProducts(categoryId) {
     return function (dispatch) {
-      let endpoint = "/products?categoryId=" + categoryId;
+      let endpoint = "https://moon-backend.afkborn.keenetic.pro/products?categoryId=" + categoryId;
       return fetch(endpoint)
         .then((response) => response.json())
         .then((result) => dispatch(getProductsSuccess(result)));
