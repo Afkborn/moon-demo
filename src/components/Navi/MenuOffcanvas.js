@@ -64,7 +64,6 @@ class MenuOffcanvas extends Component {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
-              <h3></h3>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
