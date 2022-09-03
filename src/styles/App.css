@@ -44,3 +44,26 @@
     justify-content: 'center';
     line-height: 60px;
 }
+.menu-item-text:hover{
+    color: rgb(189, 31, 31);
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    color: rgb(189, 31, 31);
+    background-color: rgb(245, 237, 237);
+}
+
+
+.td-menu-item{
+    width: 100%;
+    height: 100%;
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+}
+
+
+.menu-divide:hover{
+    text-decoration: none;
+}

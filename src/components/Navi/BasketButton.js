@@ -10,8 +10,6 @@ export default class BasketButton extends Component {
             style={{ height: 40, width: 30 }}
             alt="Basket"
             className="link-black"
-
-            //   h53 w36
           />
         </Link>
       </div>

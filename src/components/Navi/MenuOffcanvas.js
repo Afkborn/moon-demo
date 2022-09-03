@@ -5,15 +5,15 @@ import { Container, Col, Row, Table } from "reactstrap";
 import * as categoryActions from "../../redux/actions/categoryActions";
 import * as productActions from "../../redux/actions/productActions";
 import { bindActionCreators } from "redux";
-
+import { Link } from "react-router-dom";
 class MenuOffcanvas extends Component {
   state = {
     show: false,
+    
   };
 
   componentDidMount() {
     this.props.actions.getCategories();
-    
   }
 
   handleShow = () => {
@@ -50,31 +50,40 @@ class MenuOffcanvas extends Component {
 
         <Offcanvas show={this.state.show} onHide={this.handleClose}>
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>
-              <h2>Menü</h2>
-            </Offcanvas.Title>
+            <Offcanvas.Title></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Table borderless hover responsive>
               <tbody>
-                <tr>
+                <tr className="menu-item">
                   <td>
-                    <h3 className="menu-item" onClick={() => this.selectCategory({})}>Ana Sayfa</h3>
+                    <Link className="link-black" to="/">
+                    <h3
+                      className="menu-item-text"
+                      onClick={() => this.selectCategory({})}
+                    >
+                      Ana Sayfa
+                    </h3>
+                    </Link>
                   </td>
                 </tr>
+
                 {this.props.categories.map((category) => (
                   <tr
                     key={category.id}
                     className="menu-item"
-                    onClick={() => this.selectCategory(category)}
+                    onClick={() => this.selectCategory(category)
+                    }
                   >
                     <td>
+                    <Link className="link-black" to="/">
                       <img
                         src={category.img}
                         style={{ height: 60, width: 60 }}
                         alt={category.name}
                       />
                       <span className="menu-item-text"> {category.name} </span>
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -91,6 +100,7 @@ function mapStateToProps(state) {
   return {
     currentCategory: state.changeCategoryReducer,
     categories: state.categoryReducer,
+    
   };
 }
 
@@ -105,10 +115,7 @@ function mapDispatchToProps(dispatch) {
         categoryActions.changeCategory,
         dispatch
       ),
-      getProducts: bindActionCreators(
-        productActions.getProducts,
-        dispatch
-      ),
+      getProducts: bindActionCreators(productActions.getProducts, dispatch),
     },
   };
 }
