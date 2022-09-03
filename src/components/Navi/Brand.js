@@ -1,12 +1,49 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-export default class Brand extends Component {
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as categoryActions from "../../redux/actions/categoryActions";
+import { compose } from "redux";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+
+class Brand extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
+  selectCategory = () => {
+    this.props.actions.changeCategory({});
+    console.log(this.props.currentCategory);
+    this.props.history.push("/");
+  };
+
   render() {
     return (
-      <Link className="link-black brand " to="/">
+      <span className="link-black brand" onClick={() => this.selectCategory()}>
         Moon
-      </Link>
+      </span>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    currentCategory: state.changeCategoryReducer,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      changeCategory: bindActionCreators(
+        categoryActions.changeCategory,
+        dispatch
+      ),
+    },
+  };
+}
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Brand);
