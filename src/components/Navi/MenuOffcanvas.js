@@ -5,11 +5,17 @@ import { Container, Col, Row, Table } from "reactstrap";
 import * as categoryActions from "../../redux/actions/categoryActions";
 import * as productActions from "../../redux/actions/productActions";
 import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import {compose} from 'redux';
+import PropTypes from "prop-types";
 class MenuOffcanvas extends Component {
   state = {
     show: false,
   };
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
 
   componentDidMount() {
     this.props.actions.getCategories();
@@ -25,6 +31,7 @@ class MenuOffcanvas extends Component {
   selectCategory = (category) => {
     this.props.actions.changeCategory(category);
     this.props.actions.getProducts(category.id);
+    this.props.history.push('/');
     this.handleClose();
   };
 
@@ -47,9 +54,15 @@ class MenuOffcanvas extends Component {
           </Container>
         </div>
 
-        <Offcanvas show={this.state.show} onHide={this.handleClose} className="offcanvas-design">
+        <Offcanvas
+          show={this.state.show}
+          onHide={this.handleClose}
+          className="offcanvas-design"
+        >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title></Offcanvas.Title>
+            <Offcanvas.Title>
+              <h3></h3>
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Table borderless hover responsive>
@@ -70,11 +83,11 @@ class MenuOffcanvas extends Component {
                   >
                     <td>
                       <Link className="link-black" to="/">
-                        {/* <img
+                        <img
                           src={category.img}
                           style={{ height: 60, width: 60 }}
                           alt={category.name}
-                        /> */}
+                        />
                         <span className="menu-item-text">
                           {" "}
                           {category.name}{" "}
@@ -115,4 +128,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuOffcanvas);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(MenuOffcanvas);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(MenuOffcanvas);

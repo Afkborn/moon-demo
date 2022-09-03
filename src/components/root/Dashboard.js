@@ -12,7 +12,7 @@ class Dashboard extends Component {
             <Col md={4} lg={4} sm={4} xs={12} key={product.id} className="mt-3">
               <Link className="link-black" to={"/products/"+ product.id} >
                 <Card outline color="light" className="menu-item">
-                  <img src={product.img} alt="alksjd" />
+                  <img src={product.img} alt="Ürün fotoğrafı" />
                   <CardBody>
                     <CardTitle className="text-center" tag="h4">
                       {product.name}
