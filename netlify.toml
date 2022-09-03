@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/categories"
-  to = "https://moon-backend.afkborn.keenetic.pro/"
+  to = "https://moon-backend.afkborn.keenetic.pro/categories"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
