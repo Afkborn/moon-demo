@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { Container, Col, Row, Table } from "reactstrap";
 import * as categoryActions from "../../redux/actions/categoryActions";
 import * as productActions from "../../redux/actions/productActions";
+import * as spinnerActions from "../../redux/actions/spinnerActions";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import {compose} from 'redux';
 import PropTypes from "prop-types";
+
 class MenuOffcanvas extends Component {
   state = {
     show: false,
@@ -29,6 +31,7 @@ class MenuOffcanvas extends Component {
   };
 
   selectCategory = (category) => {
+    this.props.actions.showSpinner();
     this.props.actions.changeCategory(category);
     this.props.actions.getProducts(category.id);
     this.props.history.push('/');
@@ -124,6 +127,8 @@ function mapDispatchToProps(dispatch) {
         dispatch
       ),
       getProducts: bindActionCreators(productActions.getProducts, dispatch),
+      showSpinner: bindActionCreators(spinnerActions.showSpinner, dispatch),
+      hideSpinner: bindActionCreators(spinnerActions.hideSpinner, dispatch),
     },
   };
 }

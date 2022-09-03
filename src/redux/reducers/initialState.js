@@ -3,6 +3,6 @@ const initialState = {
   categories: [],
   products: [],
   cart : [],
-  
+  spinnerStatus: false,
 }
 export default initialState;
