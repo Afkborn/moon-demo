@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Basket from "../Basket/Basket";
 import Account from "../Account/Account";
 import NotFound from "../common/NotFound";
+import Product from "../Product/Product";
 
 function App() {
   return (
@@ -15,10 +16,16 @@ function App() {
         <Route path="/" exact component={Dashboard} />
         <Route path="/basket"  component={Basket} />
         <Route path="/account" component={Account} />
+        <Route path="/products/:productId" component={Product} />
+        <Route path="/products" component={Dashboard} />
+        
         <Route component={NotFound}></Route>
       </Switch>
     </Container>
   );
 }
+
+
+
 
 export default App;

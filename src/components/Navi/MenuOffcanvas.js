@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 class MenuOffcanvas extends Component {
   state = {
     show: false,
-    
   };
 
   componentDidMount() {
@@ -48,7 +47,7 @@ class MenuOffcanvas extends Component {
           </Container>
         </div>
 
-        <Offcanvas show={this.state.show} onHide={this.handleClose}>
+        <Offcanvas show={this.state.show} onHide={this.handleClose} className="offcanvas-design">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title></Offcanvas.Title>
           </Offcanvas.Header>
@@ -56,14 +55,9 @@ class MenuOffcanvas extends Component {
             <Table borderless hover responsive>
               <tbody>
                 <tr className="menu-item">
-                  <td>
+                  <td onClick={() => this.selectCategory({})}>
                     <Link className="link-black" to="/">
-                    <h3
-                      className="menu-item-text"
-                      onClick={() => this.selectCategory({})}
-                    >
-                      Ana Sayfa
-                    </h3>
+                      <h3 className="menu-item-text">Ana Sayfa</h3>
                     </Link>
                   </td>
                 </tr>
@@ -72,17 +66,19 @@ class MenuOffcanvas extends Component {
                   <tr
                     key={category.id}
                     className="menu-item"
-                    onClick={() => this.selectCategory(category)
-                    }
+                    onClick={() => this.selectCategory(category)}
                   >
                     <td>
-                    <Link className="link-black" to="/">
-                      <img
-                        src={category.img}
-                        style={{ height: 60, width: 60 }}
-                        alt={category.name}
-                      />
-                      <span className="menu-item-text"> {category.name} </span>
+                      <Link className="link-black" to="/">
+                        {/* <img
+                          src={category.img}
+                          style={{ height: 60, width: 60 }}
+                          alt={category.name}
+                        /> */}
+                        <span className="menu-item-text">
+                          {" "}
+                          {category.name}{" "}
+                        </span>
                       </Link>
                     </td>
                   </tr>
@@ -100,7 +96,6 @@ function mapStateToProps(state) {
   return {
     currentCategory: state.changeCategoryReducer,
     categories: state.categoryReducer,
-    
   };
 }
 

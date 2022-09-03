@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, CardBody, CardTitle, Row, Col, Spinner } from "reactstrap";
+import { Card, CardBody, CardTitle, Row, Col } from "reactstrap";
+import {Link} from "react-router-dom";
 import Index from "./Index";
 class Dashboard extends Component {
   returnRenderCategory = () => {
@@ -9,17 +10,19 @@ class Dashboard extends Component {
         <Row>
           {this.props.products.map((product) => (
             <Col md={4} lg={4} sm={4} xs={12} key={product.id} className="mt-3">
-              <Card outline color="light" className="menu-item">
-                <img src={product.img} alt="alksjd" />
-                <CardBody>
-                  <CardTitle className="text-center" tag="h4">
-                    {product.name}
-                  </CardTitle>
-                  <CardTitle className="text-center" tag="h5">
-                    <strong>{product.price} TL</strong>
-                  </CardTitle>
-                </CardBody>
-              </Card>
+              <Link className="link-black" to={"/products/"+ product.id} >
+                <Card outline color="light" className="menu-item">
+                  <img src={product.img} alt="alksjd" />
+                  <CardBody>
+                    <CardTitle className="text-center" tag="h4">
+                      {product.name}
+                    </CardTitle>
+                    <CardTitle className="text-center" tag="h5">
+                      <strong>{product.price} TL</strong>
+                    </CardTitle>
+                  </CardBody>
+                </Card>
+              </Link>
             </Col>
           ))}
         </Row>
