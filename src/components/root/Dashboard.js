@@ -19,12 +19,10 @@ class Dashboard extends Component {
       return <SpinnerCustom />;
     } else {
       if (this.props.products.length > 0) {
-        return this.returnRenderCategory();
+        return this.renderProductList();
+      } else {
+        return this.renderEmpty();
       }
-      else{
-        return this.returnRenderEmpty();
-      }
-      
     }
   }
 
@@ -33,15 +31,15 @@ class Dashboard extends Component {
     this.props.actions.showSpinner();
   };
 
-  returnRenderEmpty = () => {
+  renderEmpty = () => {
     return (
       <div>
         <h1>BOŞ</h1>
       </div>
-    )
-  }
+    );
+  };
 
-  returnRenderCategory = () => {
+  renderProductList = () => {
     return (
       <div className="products mt-4">
         <Row>
@@ -92,7 +90,6 @@ function mapStateToProps(state) {
   };
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
@@ -102,4 +99,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Dashboard);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Dashboard);

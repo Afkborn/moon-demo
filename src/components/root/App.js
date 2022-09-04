@@ -18,7 +18,6 @@ function App() {
         <Route path="/account" component={Account} />
         <Route path="/products/:productId" component={Product} />
         <Route path="/products" component={Dashboard} />
-        
         <Route component={NotFound}></Route>
       </Switch>
     </Container>

@@ -23,6 +23,7 @@ class Product extends Component {
       </div>
     );
   };
+  
   render() {
     return <div>{this.checkLoading()}</div>;
   }
