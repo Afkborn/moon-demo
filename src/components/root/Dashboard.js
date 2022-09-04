@@ -1,17 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, CardBody, CardTitle, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import Index from "./Index";
 import SpinnerCustom from "../common/SpinnerCustom";
+import { compose } from "redux";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import * as spinnerActions from "../../redux/actions/spinnerActions";
 
 class Dashboard extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
   checkLoading() {
     if (this.props.spinnerStatus) {
-      return <SpinnerCustom/>;
+      return <SpinnerCustom />;
     } else {
-      return this.returnRenderCategory();
+      if (this.props.products.length > 0) {
+        return this.returnRenderCategory();
+      }
+      else{
+        return this.returnRenderEmpty();
+      }
+      
     }
+  }
+
+  selectProduct = (product) => {
+    this.props.history.push(`/products/${product.id}`);
+    this.props.actions.showSpinner();
+  };
+
+  returnRenderEmpty = () => {
+    return (
+      <div>
+        <h1>BOŞ</h1>
+      </div>
+    )
   }
 
   returnRenderCategory = () => {
@@ -20,19 +47,22 @@ class Dashboard extends Component {
         <Row>
           {this.props.products.map((product) => (
             <Col md={4} lg={4} sm={4} xs={12} key={product.id} className="mt-3">
-              <Link className="link-black" to={"/products/" + product.id}>
-                <Card outline color="light" className="menu-item">
-                  <img src={product.img} alt="Ürün fotoğrafı" />
-                  <CardBody>
-                    <CardTitle className="text-center" tag="h4">
-                      {product.name}
-                    </CardTitle>
-                    <CardTitle className="text-center" tag="h5">
-                      <strong>{product.price} TL</strong>
-                    </CardTitle>
-                  </CardBody>
-                </Card>
-              </Link>
+              <Card
+                outline
+                color="light"
+                className="menu-item"
+                onClick={() => this.selectProduct(product)}
+              >
+                <img src={product.img} alt="Ürün fotoğrafı" />
+                <CardBody>
+                  <CardTitle className="text-center" tag="h4">
+                    {product.name}
+                  </CardTitle>
+                  <CardTitle className="text-center" tag="h5">
+                    <strong>{product.price} TL</strong>
+                  </CardTitle>
+                </CardBody>
+              </Card>
             </Col>
           ))}
         </Row>
@@ -57,9 +87,19 @@ function mapStateToProps(state) {
   return {
     categories: state.categoryReducer,
     currentCategory: state.changeCategoryReducer,
-    products: state.productReducer,
+    products: state.productListReducer,
     spinnerStatus: state.spinnerReducer,
   };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      showSpinner: bindActionCreators(spinnerActions.showSpinner, dispatch),
+      hideSpinner: bindActionCreators(spinnerActions.hideSpinner, dispatch),
+    },
+  };
+}
+
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Dashboard);

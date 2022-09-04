@@ -14,7 +14,6 @@ class Brand extends Component {
 
   selectCategory = () => {
     this.props.actions.changeCategory({});
-    console.log(this.props.currentCategory);
     this.props.history.push("/");
   };
 
