@@ -8,7 +8,7 @@ import { compose } from "redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import * as spinnerActions from "../../redux/actions/spinnerActions";
-
+import EmptyProductList from "../common/EmptyProductList";
 class Dashboard extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -21,7 +21,7 @@ class Dashboard extends Component {
       if (this.props.products.length > 0) {
         return this.renderProductList();
       } else {
-        return this.renderEmpty();
+        return <EmptyProductList/>
       }
     }
   }
@@ -31,13 +31,7 @@ class Dashboard extends Component {
     this.props.actions.showSpinner();
   };
 
-  renderEmpty = () => {
-    return (
-      <div>
-        <h1>BOŞ</h1>
-      </div>
-    );
-  };
+
 
   renderProductList = () => {
     return (
