@@ -14,8 +14,8 @@
 
 
 [[redirects]]
-  from = "/products/*"
-  to = "https://moon-backend.afkborn.keenetic.pro/products/*"
+  from = "/products/"
+  to = "https://moon-backend.afkborn.keenetic.pro/products/"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
