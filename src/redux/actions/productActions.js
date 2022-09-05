@@ -32,6 +32,8 @@ export function getProducts(categoryId) {
       return fetch(endpoint)
         .then((response) => response.json())
         .then((result) => dispatch(getProductSuccess(result)))
-        .then(() => dispatch(spinnerActions.hideSpinner()));
+        .then(() => dispatch(spinnerActions.hideSpinner()))
+        
     };
   }
+
