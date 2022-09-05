@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import SpinnerCustom from "../common/SpinnerCustom";
 import * as productActions from "../../redux/actions/productActions";
 import { bindActionCreators } from "redux";
-import { Container } from "reactstrap";
-import { Row, Col } from "reactstrap";
+import { Container,  Row, Col } from "reactstrap";
+import { Image } from "react-bootstrap";
 
 class Product extends Component {
   checkLoading() {
@@ -23,10 +23,13 @@ class Product extends Component {
       <Container fluid>
         <div className="product">
           <Row>
-            <Col xs="7" className="text-center">
-              <img src={this.props.product.img} alt="Ürün fotoğrafı" />
+            <Col xs={12} sm={12}  md={12} lg={8} className="text-center">
+              <div className="text-center">
+                <Image  fluid src={this.props.product.img} alt="Ürün fotoğrafı" />
+              </div>
             </Col>
-            <Col xs="5" className="mt-5">
+            <Col  xs={12} sm={12}  md={12} lg={4} className="mt-5">
+              {/* PRODUCT DETAIL SIDE*/}
               <div className="mt-5">
                 <h3 className="product-name">{this.props.product.name}</h3>
               </div>

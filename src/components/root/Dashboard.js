@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import * as spinnerActions from "../../redux/actions/spinnerActions";
 import EmptyProductList from "../common/EmptyProductList";
+import { Image } from "react-bootstrap";
+
 class Dashboard extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -21,7 +23,7 @@ class Dashboard extends Component {
       if (this.props.products.length > 0) {
         return this.renderProductList();
       } else {
-        return <EmptyProductList/>
+        return <EmptyProductList />;
       }
     }
   }
@@ -45,7 +47,11 @@ class Dashboard extends Component {
                 className="menu-item"
                 onClick={() => this.selectProduct(product)}
               >
-                <img src={product.img} alt="Ürün fotoğrafı" />
+                <Image
+                  // style={{ height: 288, width: 431 }}
+                  src={product.img}
+                  alt="Ürün fotoğrafı"
+                />
                 <CardBody>
                   <CardTitle className="text-center" tag="h4">
                     {product.name}
