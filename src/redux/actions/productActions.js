@@ -28,7 +28,7 @@ export function getProducts(categoryId) {
 
   export function getProduct(productId) {
     return function (dispatch) {
-      let endpoint = "/products?id" + productId;
+      let endpoint = "/products?id=" + productId;
       return fetch(endpoint)
         .then((response) => response.json())
         .then((result) => dispatch(getProductSuccess(result)))
