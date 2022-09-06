@@ -29,7 +29,7 @@ class Dashboard extends Component {
   }
 
   selectProduct = (product) => {
-    this.props.history.push(`/products/${product.id}`);
+    this.props.history.push(`/products/${product._id}`);
     this.props.actions.showSpinner();
   };
 
@@ -40,7 +40,7 @@ class Dashboard extends Component {
       <div className="products mt-4">
         <Row>
           {this.props.products.map((product) => (
-            <Col md={4} lg={4} sm={4} xs={12} key={product.id} className="mt-3">
+            <Col md={4} lg={4} sm={4} xs={12} key={product._id} className="mt-3">
               <Card
                 outline
                 color="light"

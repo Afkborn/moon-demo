@@ -33,7 +33,7 @@ class MenuOffcanvas extends Component {
   selectCategory = (category) => {
     this.props.actions.showSpinner();
     this.props.actions.changeCategory(category);
-    this.props.actions.getProducts(category.id);
+    this.props.actions.getProducts(category._id);
     this.props.history.push('/');
     this.handleClose();
   };
@@ -76,10 +76,9 @@ class MenuOffcanvas extends Component {
                     </Link>
                   </td>
                 </tr>
-
                 {this.props.categories.map((category) => (
                   <tr
-                    key={category.id}
+                    key={category._id}
                     className="menu-item"
                     onClick={() => this.selectCategory(category)}
                   >
