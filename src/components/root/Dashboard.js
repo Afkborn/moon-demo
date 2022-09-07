@@ -48,7 +48,9 @@ class Dashboard extends Component {
                 onClick={() => this.selectProduct(product)}
               >
                 <Image
+
                   // style={{ height: 288, width: 431 }}
+                  // FIX IMAGE SIZE
                   src={product.img}
                   alt="Ürün fotoğrafı"
                 />
