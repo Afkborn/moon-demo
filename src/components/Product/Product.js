@@ -25,7 +25,8 @@ class Product extends Component {
           <Row>
             <Col xs={12} sm={12}  md={12} lg={8} className="text-center">
               <div className="text-center">
-                <Image  fluid src={this.props.product.img} alt="Ürün fotoğrafı" />
+                <Image  fluid src={"/media/"+this.props.product.showcaseImageId + "?type=800w"} alt="Ürün fotoğrafı" /> 
+                {/* {"/media/main/" + oldProduct.imageId} */}
               </div>
             </Col>
             <Col  xs={12} sm={12}  md={12} lg={4} className="mt-5">

@@ -33,14 +33,21 @@ class Dashboard extends Component {
     this.props.actions.showSpinner();
   };
 
-
-
   renderProductList = () => {
     return (
       <div className="products mt-4">
         <Row>
           {this.props.products.map((product) => (
-            <Col md={4} lg={4} sm={4} xs={12} key={product._id} className="mt-3">
+            <Col
+              xs={12}
+              sm={4}
+              md={4}
+              lg={4}
+              xl={4}
+              xxl={4}
+              key={product._id}
+              className="mt-3"
+            >
               <Card
                 outline
                 color="light"
@@ -48,10 +55,19 @@ class Dashboard extends Component {
                 onClick={() => this.selectProduct(product)}
               >
                 <Image
+                  // use SrcSet for responsive images
 
-                  // style={{ height: 288, width: 431 }}
-                  // FIX IMAGE SIZE
-                  src={product.img}
+                  srcSet={
+                    "/media/" +
+                    product.showcaseImageId +
+                    "?type=400w 400w, /media/" +
+                    product.showcaseImageId +
+                    "?type=800w 800w, /media/" +
+                    product.showcaseImageId +
+                    "?type=1200w 1200w"
+                  }
+                  sizes="(max-width: 400px) 400px, 800px, 1200px"
+                  src={"/media/" + product.showcaseImageId + "?type=1200w"}
                   alt="Ürün fotoğrafı"
                 />
                 <CardBody>
